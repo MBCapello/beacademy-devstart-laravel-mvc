@@ -17,6 +17,6 @@ class ViaCepController extends Controller
 
     public function show($cep)
     {
-        dd(Http::get("viacep.com.br/ws/{$cep}/json/")->json());
+        return Http::get("viacep.com.br/ws/{$cep}/json/")->json();
     }
 }
