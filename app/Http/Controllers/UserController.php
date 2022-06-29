@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = [
-            'nome'=>'Marcelo Capello',
-            'nickname'=>'Mackgaren',
-        ];
+        $users = User::all();
 
-        dd($users);
+       return view('users.index', compact('users'));
     }
 
     public function show($id)
     {
-        dd("O id do usuário é {$id}");
+        if (!$user = User::find($id)) {
+            return redirect()->route('users.index');
+        }
+
+        return view('users.show', compact('user'));
     }
 }
