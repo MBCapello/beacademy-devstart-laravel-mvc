@@ -33,6 +33,7 @@ class UserController extends Controller
     {
             return view('users.create');
     }
+
     public function store(Request $request)
     {
        $data = $request->all();
@@ -72,7 +73,7 @@ class UserController extends Controller
             $data['password'] = bcrypt($request->password);
         }
         $user->update($data);
-        
+
         return redirect()->route('users.index');
     }
 }
